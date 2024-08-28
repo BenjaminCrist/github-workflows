@@ -1,37 +1,10 @@
-name: Test and Display Output
-
-# Déclenchement du workflow sur des événements push ou pull request
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
+name: Check Requirements
+on: [push]
 jobs:
-  test-and-display:
+  show-requirements:
     runs-on: ubuntu-latest
-
     steps:
-    # Étape 1 : Vérifier le code source dans le dépôt
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    # Étape 2 : Installer les dépendances si nécessaire (par exemple avec npm, pip, etc.)
-    - name: Install dependencies
-      run: |
-        # Commande pour installer les dépendances
-        npm install
-        # Ou pour Python : pip install -r requirements.txt
-
-    # Étape 3 : Exécuter les tests automatisés
-    - name: Run Tests
-      run: |
-        # Commande pour exécuter les tests
-        npm test
-        # Ou pour Python : pytest
-
-    # Étape 4 : Afficher le contenu du fichier de sortie après les tests
-    - name: Display output file
-      run: |
-        # Remplacez 'output.txt' par le nom du fichier que vous voulez afficher
-        cat path/to/output.txt
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: Display requirements.txt content
+      run: cat requirements.txt
